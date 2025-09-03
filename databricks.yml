@@ -1,0 +1,15 @@
+resources:
+  serving-endpoints:
+    serving-endpoint:
+      name: "YOUR_ENDPOINT_NAME"  # Replace with your Agent Bricks endpoint name
+      permissions:
+        - level: CAN_QUERY
+          principal: "{{workspace.current_user.userName}}"
+
+bundle:
+  name: "knowledge-assistant-app"
+  
+environments:
+  default:
+    mode: development
+    compute_id: "{{workspace.compute_id}}"
