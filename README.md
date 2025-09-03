@@ -1,75 +1,191 @@
-# 🏈⚾ Sports Rules Knowledge Assistant - Public Template
+# 🏈⚾ NFL & MLB Rules Assistant - Open Source Template
 
-A professional Streamlit chatbot built with **Databricks Agent Bricks Knowledge Assistant** for answering questions about sports rules with citations. This template can be adapted for any knowledge base - HR policies, technical documentation, legal contracts, and more!
+**Transform your documents into intelligent AI assistants in minutes!** This is the actual, production-ready NFL & MLB rules assistant built with **Databricks Agent Bricks**. Use it as-is for sports rules, or easily adapt it for your own knowledge base - HR policies, technical documentation, legal contracts, and more!
 
-![Sports Rules Assistant](https://img.shields.io/badge/Databricks-Agent%20Bricks-red) ![Streamlit](https://img.shields.io/badge/Streamlit-App-green) ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![Databricks](https://img.shields.io/badge/Databricks-Agent%20Bricks-red) ![Streamlit](https://img.shields.io/badge/Streamlit-App-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Python](https://img.shields.io/badge/Python-3.8+-yellow) ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 
-## 🌟 Features
+## 🌟 What You Get
 
-- **🤖 AI-Powered Knowledge Assistant** using Databricks Agent Bricks
-- **🎨 Professional Sports-Themed UI** with modern design
-- **💬 Interactive Chat Interface** with example questions
+This is the **actual working implementation** of a professional sports rules assistant, not just a template! You can:
+
+### 🏈⚾ **Use As-Is for Sports Rules**
+- Deploy the exact same NFL & MLB rules assistant
+- Professional sports-themed UI with modern design
+- Official NFL and MLB rulebook integration
+- Ready-to-use example questions and branding
+
+### 🏢 **Adapt for Your Organization**
+- Replace sports data with your company documents
+- Customize branding for your industry
+- Use for HR policies, technical docs, legal contracts, training materials
+- Keep the professional UI and user experience
+
+## 🎯 Live Demo Data Sources
+
+This implementation uses **official sports rulebooks**:
+- **NFL Official Rulebook**: https://operations.nfl.com/the-rules/nfl-rulebook/
+- **MLB Official Rules**: https://mktg.mlbstatic.com/mlb/official-information/2025-official-baseball-rules.pdf
+
+*Download these PDFs and upload to your Unity Catalog volume to recreate the exact same assistant!*
+
+## ✨ Key Features
+
+- **🤖 Agent Bricks Integration** - Seamless knowledge base setup
+- **🎨 Professional Sports UI** - Customer-ready appearance
+- **💬 Interactive Chat** with domain-specific examples
 - **📱 Responsive Design** for desktop and mobile
 - **🔄 Direct Databricks Sync** for seamless deployment
-- **📊 Session Management** and chat history
-- **🎯 Professional Error Handling** with user-friendly messages
+- **📊 Session Management** and error handling
+- **🎯 Citation Support** - Responses include source references
 
-## 🚀 Quick Start
+## 🚀 Quick Start Options
 
-### Prerequisites
+### Option A: Sports Rules Assistant (Use As-Is)
 
-1. **Databricks Workspace** with:
-   - Agent Bricks enabled
-   - Unity Catalog enabled
-   - Serverless compute enabled
-   - Model Serving access
-
-2. **Databricks CLI** installed and configured
-
-### Step 1: Create Your Knowledge Assistant
-
-1. **Upload Your Documents**
+1. **Download Official Rulebooks**
    ```bash
-   # Upload your PDFs/documents to Unity Catalog volume
-   # Example: /Volumes/main/default/sports_rules/
+   # Download these files to your local machine:
+   # NFL: https://operations.nfl.com/the-rules/nfl-rulebook/
+   # MLB: https://mktg.mlbstatic.com/mlb/official-information/2025-official-baseball-rules.pdf
    ```
 
-2. **Create Agent Bricks Knowledge Assistant**
-   - Go to **Agents** in Databricks workspace
-   - Click **Knowledge Assistant**
-   - Configure with your document volume
-   - Note your endpoint name (e.g., `your-endpoint-name`)
-
-### Step 2: Clone and Configure
-
-1. **Clone this repository**
-   ```bash
-   git clone https://github.com/your-username/sports-rules-assistant
-   cd sports-rules-assistant
+2. **Upload to Unity Catalog**
+   ```sql
+   -- Create volume for sports rules
+   CREATE VOLUME IF NOT EXISTS main.default.sports_rules;
+   
+   -- Upload the PDFs through Databricks UI to:
+   -- /Volumes/main/default/sports_rules/nfl_rulebook.pdf
+   -- /Volumes/main/default/sports_rules/mlb_official_rules.pdf
    ```
 
-2. **Update configuration**
-   - Edit `app.yaml` with your endpoint name
-   - Update `databricks.yml` with your endpoint details
-   - Customize the UI theme in `app.py`
+3. **Create Agent Bricks Knowledge Assistant**
+   - Go to **Agents** → **Knowledge Assistant** in Databricks
+   - Name: "NFL-MLB Rules Assistant"
+   - Knowledge Source: `/Volumes/main/default/sports_rules/`
+   - Instructions: "Expert on NFL and MLB rules with accurate citations"
 
-### Step 3: Deploy to Databricks
+### Option B: Adapt for Your Organization
 
-1. **Sync to Databricks**
-   ```bash
-   databricks sync . /Workspace/Users/your.email@company.com/your-app-name
+1. **Replace Data Sources**
+   ```sql
+   -- Create volume for your documents
+   CREATE VOLUME IF NOT EXISTS main.default.company_docs;
+   
+   -- Upload your PDFs (HR policies, technical docs, etc.)
+   -- /Volumes/main/default/company_docs/employee_handbook.pdf
+   -- /Volumes/main/default/company_docs/technical_guide.pdf
    ```
 
-2. **Deploy using Databricks Apps**
-   - Navigate to your workspace
-   - Deploy through Databricks Apps interface
+2. **Customize the UI**
+   ```python
+   # In app.py, update the header:
+   st.markdown("""
+   <div class="main-header">
+       <h1 class="main-title">🏢 Your Company Knowledge Assistant 📚</h1>
+       <p class="main-subtitle">AI-powered expert for company policies and procedures</p>
+   </div>
+   """, unsafe_allow_html=True)
+   
+   # Update example questions:
+   example_questions = [
+       "What is our remote work policy?",
+       "How do I request time off?",
+       "What are the IT security guidelines?",
+       "Where can I find the employee handbook?"
+   ]
+   ```
+
+## 📋 Prerequisites
+
+- **Databricks Workspace** with:
+  - Agent Bricks enabled (Beta)
+  - Unity Catalog enabled
+  - Serverless compute enabled
+  - Model Serving access
+- **Databricks CLI** installed and configured
+
+## 🛠️ Setup Instructions
+
+### 1. Clone This Repository
+```bash
+git clone https://github.com/alinke5/knowledge-assistant-template
+cd knowledge-assistant-template
+```
+
+### 2. Configure Your Endpoint
+```yaml
+# In databricks.yml, replace with your endpoint name:
+resources:
+  serving-endpoints:
+    serving-endpoint:
+      name: "YOUR_AGENT_ENDPOINT_NAME"  # Replace this
+      permissions:
+        - level: CAN_QUERY
+          principal: "{{workspace.current_user.userName}}"
+```
+
+### 3. Deploy to Databricks
+```bash
+# Sync to your workspace
+databricks sync . /Workspace/Users/your.email@company.com/your-app-name
+
+# Deploy through Databricks Apps UI
+```
+
+## 🎨 Customization Examples
+
+### Healthcare Organization
+```python
+# Header customization
+<h1 class="main-title">🏥 MedCorp Policy Assistant 💊</h1>
+<p class="main-subtitle">AI guide for healthcare policies and procedures</p>
+
+# Example questions
+example_questions = [
+    "What is our patient privacy policy?",
+    "How do I report a safety incident?",
+    "What are the infection control procedures?",
+    "Who do I contact for medical emergencies?"
+]
+```
+
+### Technology Company
+```python
+# Header customization
+<h1 class="main-title">💻 TechCorp Knowledge Hub 🚀</h1>
+<p class="main-subtitle">AI assistant for engineering and product documentation</p>
+
+# Example questions
+example_questions = [
+    "How do I deploy to production?",
+    "What is our code review process?",
+    "How do I access the development environment?",
+    "What are our security guidelines?"
+]
+```
+
+### Financial Services
+```python
+# Header customization
+<h1 class="main-title">🏦 FinCorp Compliance Assistant 💰</h1>
+<p class="main-subtitle">AI guide for financial regulations and policies</p>
+
+# Example questions
+example_questions = [
+    "What are the KYC requirements?",
+    "How do I handle suspicious transactions?",
+    "What is our risk management policy?",
+    "Who reviews compliance issues?"
+]
+```
 
 ## 📁 Repository Structure
 
 ```
-├── app.py                    # Main Streamlit application
-├── app.yaml                  # Databricks App configuration
-├── databricks.yml            # Resource configuration
+├── app.py                    # Main Streamlit app (NFL/MLB themed)
+├── app.yaml                  # Databricks App configuration  
+├── databricks.yml            # Resource configuration (sanitized)
 ├── model_serving_utils.py    # Endpoint integration utilities
 ├── requirements.txt          # Python dependencies
 ├── debug_app.py             # Debug/testing interface
@@ -81,91 +197,71 @@ A professional Streamlit chatbot built with **Databricks Agent Bricks Knowledge 
     └── TROUBLESHOOTING.md   # Common issues and solutions
 ```
 
-## 🎨 Customization
+## 🎯 Use Cases & Industries
 
-### Update Branding
-```python
-# In app.py, update the header and theme
-st.markdown("""
-<div class="main-header">
-    <h1 class="main-title">🏢 Your Company Knowledge Assistant 📚</h1>
-    <p class="main-subtitle">Your AI-powered expert for company policies and procedures</p>
-</div>
-""", unsafe_allow_html=True)
-```
+### 📋 **Human Resources**
+- Employee handbooks and policies
+- Benefits and compensation guides
+- Onboarding and training materials
+- HR process documentation
 
-### Add Your Example Questions
-```python
-# In app.py, update example questions
-example_questions = [
-    "What is our remote work policy?",
-    "How do I request time off?",
-    "What are the benefits enrollment deadlines?",
-    "Where can I find the employee handbook?"
-]
-```
+### ⚖️ **Legal & Compliance**
+- Contract templates and analysis
+- Regulatory compliance guides
+- Legal process documentation
+- Policy interpretation assistance
 
-### Update Colors and Styling
-```css
-/* In app.py load_css() function */
-.main-header {
-    background: linear-gradient(90deg, #your-color1 0%, #your-color2 100%);
-}
-```
+### 🔧 **Technical Documentation**
+- API documentation and guides
+- System administration manuals
+- Troubleshooting knowledge bases
+- Software user guides
 
-## 📋 Configuration Files
+### 🎓 **Education & Training**
+- Course materials and syllabi
+- Certification study guides
+- Institutional policy manuals
+- Training program documentation
 
-### app.yaml
-```yaml
-command: [
-  "streamlit", 
-  "run",
-  "app.py"
-]
+### 🏥 **Healthcare**
+- Medical procedure guidelines
+- Patient care protocols
+- Safety and compliance manuals
+- Healthcare policy documentation
 
-env:
-  - name: STREAMLIT_BROWSER_GATHER_USAGE_STATS
-    value: "false"
-  - name: "SERVING_ENDPOINT"
-    valueFrom: "serving-endpoint"
-```
+## 🆘 Support & Documentation
 
-### databricks.yml
-```yaml
-resources:
-  serving-endpoints:
-    serving-endpoint:
-      name: "YOUR_ENDPOINT_NAME"  # Replace with your endpoint
-      permissions:
-        - level: CAN_QUERY
-          principal: "{{workspace.current_user.userName}}"
-```
+- **📖 Setup Guide**: [Complete setup instructions](docs/SETUP_GUIDE.md)
+- **🎨 Customization**: [Branding and UI customization](docs/CUSTOMIZATION.md)  
+- **🔧 Troubleshooting**: [Common issues and solutions](docs/TROUBLESHOOTING.md)
+- **📚 Databricks Docs**: [Agent Bricks Knowledge Assistant](https://docs.databricks.com/aws/en/generative-ai/agent-bricks/knowledge-assistant)
 
-## 🔧 Use Cases
+## 🌟 Why This Template Works
 
-This template can be adapted for:
+### **Real Implementation** 
+This isn't just a demo - it's a production-ready application currently handling sports rules queries with professional-grade UI and error handling.
 
-- **📋 HR Knowledge Base** - Employee policies, benefits, procedures
-- **⚖️ Legal Document Assistant** - Contract Q&A, compliance guidance
-- **📖 Technical Documentation** - API docs, user manuals, troubleshooting
-- **🎓 Training Materials** - Course content, certification guides
-- **🏥 Healthcare Protocols** - Medical guidelines, procedure manuals
-- **🏭 Operations Manuals** - Safety procedures, equipment guides
+### **Proven Architecture**
+Built using Databricks best practices with proper resource management, security, and scalability considerations.
 
-## 🆘 Support
+### **Professional Appearance**
+Customer-ready UI suitable for client demonstrations, with modern design and smooth user experience.
 
-- **Setup Issues**: See [SETUP_GUIDE.md](docs/SETUP_GUIDE.md)
-- **Customization**: See [CUSTOMIZATION.md](docs/CUSTOMIZATION.md)
-- **Troubleshooting**: See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
-- **Databricks Docs**: [Agent Bricks Knowledge Assistant](https://docs.databricks.com/aws/en/generative-ai/agent-bricks/knowledge-assistant)
+### **Comprehensive Documentation**
+Everything you need to deploy, customize, and maintain your knowledge assistant.
 
 ## 🤝 Contributing
+
+We welcome contributions! Whether you're:
+- Adding new industry examples
+- Improving the UI/UX
+- Enhancing documentation
+- Fixing bugs or adding features
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+4. Submit a pull request
 
 ## 📄 License
 
@@ -174,12 +270,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Databricks** for the incredible Agent Bricks platform
-- **Streamlit** for the beautiful UI framework
-- **Cursor** for making development a breeze
+- **Streamlit** for the beautiful UI framework  
+- **NFL & MLB** for providing official rulebooks
 - **The Community** for inspiration and feedback
 
 ---
 
+## 🚀 Ready to Transform Your Documents?
+
+Whether you want the exact NFL & MLB rules assistant or need to create a knowledge base for your organization, this template gives you everything you need to go from documents to deployed AI assistant in minutes.
+
 **Built with ❤️ using Databricks Agent Bricks and Streamlit**
 
-*Transform your documents into intelligent assistants in minutes, not months!*
+*From sports rules to corporate policies - transform any document collection into an intelligent assistant!*

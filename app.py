@@ -29,7 +29,7 @@ def get_user_info():
         user_id=headers.get("X-Forwarded-User"),
     )
 
-# Custom CSS for professional styling
+# Custom CSS for professional sports-themed styling
 def load_css():
     st.markdown("""
     <style>
@@ -203,8 +203,8 @@ def load_css():
 def display_header():
     st.markdown("""
     <div class="main-header">
-        <h1 class="main-title">🏢 Knowledge Assistant 📚</h1>
-        <p class="main-subtitle">Your AI-powered expert for company knowledge and documentation</p>
+        <h1 class="main-title">🏈 NFL & MLB Rules Assistant ⚾</h1>
+        <p class="main-subtitle">Your AI-powered expert for professional sports rules and regulations</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -212,40 +212,40 @@ def display_welcome_message():
     if len(st.session_state.messages) == 0:
         st.markdown("""
         <div class="welcome-card">
-            <h3 style="margin-top: 0; color: #92400e;">👋 Welcome to the Knowledge Assistant!</h3>
+            <h3 style="margin-top: 0; color: #92400e;">👋 Welcome to the Sports Rules Assistant!</h3>
             <p style="margin-bottom: 0; color: #451a03;">
-                I'm here to help you find information from your company's knowledge base. 
-                Ask me anything about policies, procedures, guidelines, or any documents in our system!
+                I'm here to help you understand NFL and MLB rules, regulations, and game scenarios. 
+                Ask me anything about penalties, scoring, player positions, game mechanics, or specific rule interpretations!
             </p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Example questions - CUSTOMIZE THESE FOR YOUR USE CASE
+        # Example questions
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("### 📋 Policy Examples")
+            st.markdown("### 🏈 NFL Examples")
             example_questions = [
-                "What is the remote work policy?",
-                "How do I request time off?",
-                "What are the employee benefits?",
-                "Where can I find the employee handbook?"
+                "What's the difference between a false start and encroachment?",
+                "How does overtime work in NFL playoffs?",
+                "When is a catch considered complete?",
+                "What are the rules for targeting penalties?"
             ]
             for q in example_questions:
-                if st.button(q, key=f"policy_{q[:10]}", use_container_width=True):
+                if st.button(q, key=f"nfl_{q[:10]}", use_container_width=True):
                     st.session_state.selected_question = q
                     st.rerun()
         
         with col2:
-            st.markdown("### 📖 General Examples")
+            st.markdown("### ⚾ MLB Examples")
             example_questions = [
-                "How do I onboard a new employee?",
-                "What are the security guidelines?",
-                "Who do I contact for IT support?",
-                "What is the expense reimbursement process?"
+                "What constitutes a balk in baseball?",
+                "How does the infield fly rule work?",
+                "What's the difference between safe and out at first base?",
+                "When can a runner steal home plate?"
             ]
             for q in example_questions:
-                if st.button(q, key=f"general_{q[:10]}", use_container_width=True):
+                if st.button(q, key=f"mlb_{q[:10]}", use_container_width=True):
                     st.session_state.selected_question = q
                     st.rerun()
 
@@ -253,12 +253,12 @@ def display_stats():
     st.markdown("""
     <div class="stats-container">
         <div class="stat-card">
-            <div class="stat-number">📚</div>
-            <div class="stat-label">Knowledge Expert</div>
+            <div class="stat-number">🏈</div>
+            <div class="stat-label">NFL Rules Expert</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number">🔍</div>
-            <div class="stat-label">Document Search</div>
+            <div class="stat-number">⚾</div>
+            <div class="stat-label">MLB Rules Expert</div>
         </div>
         <div class="stat-card">
             <div class="stat-number">24/7</div>
@@ -277,7 +277,7 @@ def handle_chat_interaction():
         prompt = st.session_state.selected_question
         del st.session_state.selected_question
     else:
-        prompt = st.chat_input("Ask me about company policies, procedures, or any documentation... 📚", key="main_chat_input")
+        prompt = st.chat_input("Ask me about NFL or MLB rules... 🏈⚾", key="main_chat_input")
     
     if prompt:
         # Add user message to chat history
@@ -289,7 +289,7 @@ def handle_chat_interaction():
 
         # Display assistant response with loading state
         with st.chat_message("assistant"):
-            with st.spinner("Searching knowledge base..."):
+            with st.spinner("Analyzing rules and regulations..."):
                 try:
                     # Query the Databricks serving endpoint
                     assistant_response = query_endpoint(
@@ -306,17 +306,17 @@ def handle_chat_interaction():
                     logger.error(f"Error querying endpoint: {e}")
                     
                     if "authentication" in error_msg.lower() or "token" in error_msg.lower():
-                        st.error("🔐 Authentication issue with the knowledge base.")
+                        st.error("🔐 Authentication issue with the sports rules database.")
                         st.info("📞 Please contact your administrator to check endpoint permissions.")
                     elif "validation" in error_msg.lower() or "schema" in error_msg.lower():
-                        st.error("🔧 Data format issue when querying the knowledge base.")
-                        st.info("💡 **Try asking your question in a different way**, such as:\n- 'Explain the remote work policy'\n- 'What is the process for expense reimbursement?'")
+                        st.error("🔧 Data format issue when querying the sports rules database.")
+                        st.info("💡 **Try asking your question in a different way**, such as:\n- 'Explain NFL overtime rules'\n- 'What happens in NFL playoff overtime?'")
                     elif "failed" in error_msg.lower() and "approaches" in error_msg.lower():
-                        st.error("⚠️ Multiple connection attempts to the knowledge base failed.")
+                        st.error("⚠️ Multiple connection attempts to the sports rules database failed.")
                         st.info(f"🔍 **Technical details:** {error_msg[:200]}...")
                         st.info("🔄 Please try again in a moment, or contact support if the issue persists.")
                     else:
-                        st.error("⚠️ I'm experiencing technical difficulties connecting to the knowledge base.")
+                        st.error("⚠️ I'm experiencing technical difficulties connecting to the sports rules database.")
                         st.info("🔄 Please try again in a moment, or try asking a different question.")
                     
                     assistant_response = "I apologize for the technical issue. Please try rephrasing your question or try one of the example questions above."
@@ -327,8 +327,8 @@ def handle_chat_interaction():
 def main():
     # Page configuration
     st.set_page_config(
-        page_title="Knowledge Assistant",
-        page_icon="📚",
+        page_title="NFL & MLB Rules Assistant",
+        page_icon="🏈",
         layout="wide",
         initial_sidebar_state="expanded"
     )
@@ -352,7 +352,7 @@ def main():
         st.markdown(
             f"""
             <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
-                <p><strong>Technical Issue:</strong> The knowledge assistant endpoint is currently not accessible.</p>
+                <p><strong>Technical Issue:</strong> The sports rules endpoint is currently not accessible.</p>
                 <p>Please contact your administrator or try again later.</p>
             </div>
             """, 
@@ -370,11 +370,11 @@ def main():
         st.markdown("---")
         st.markdown("### 🎯 What I Can Help With")
         st.markdown("""
-        - **Company Policies & Procedures**
-        - **Employee Guidelines**  
-        - **Documentation Search**
-        - **Process Instructions**
-        - **Contact Information**
+        - **NFL Rules & Penalties**
+        - **MLB Rules & Scenarios**  
+        - **Game Mechanics**
+        - **Player Positions**
+        - **Scoring Systems**
         - **Official Interpretations**
         """)
         
