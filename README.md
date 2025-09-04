@@ -1,4 +1,4 @@
-# 🏈⚾ NFL & MLB Rules Assistant
+# 🏈⚾ NFL & MLB Rules Assistant (Public Template)
 
 **Transform your documents into intelligent AI assistants in minutes!** This is the actual, production-ready NFL & MLB rules assistant built with **Databricks Agent Bricks**. Use it as-is for sports rules, or easily adapt it for your own knowledge base - HR policies, technical documentation, legal contracts, and more!
 
