@@ -1,4 +1,4 @@
-# 🏈⚾ NFL & MLB Rules Assistant - Open Source Template
+# 🏈⚾ NFL & MLB Rules Assistant
 
 **Transform your documents into intelligent AI assistants in minutes!** This is the actual, production-ready NFL & MLB rules assistant built with **Databricks Agent Bricks**. Use it as-is for sports rules, or easily adapt it for your own knowledge base - HR policies, technical documentation, legal contracts, and more!
 
@@ -6,12 +6,12 @@
 
 ## 🌟 What You Get
 
-This is the **actual working implementation** of a professional sports rules assistant, not just a template! You can:
+This is an **actual working implementation** of a professional sports rules assistant! You can:
 
 ### 🏈⚾ **Use As-Is for Sports Rules**
 - Deploy the exact same NFL & MLB rules assistant
 - Professional sports-themed UI with modern design
-- Official NFL and MLB rulebook integration
+- Official NFL and MLB rulebook integration (you'll need to download these as PDF, & upload to a UC volume - more on that below)
 - Ready-to-use example questions and branding
 
 ### 🏢 **Adapt for Your Organization**
@@ -33,7 +33,7 @@ This implementation uses **official sports rulebooks**:
 - **🤖 Agent Bricks Integration** - Seamless knowledge base setup
 - **🎨 Professional Sports UI** - Customer-ready appearance
 - **💬 Interactive Chat** with domain-specific examples
-- **📱 Responsive Design** for desktop and mobile
+- **📱 Responsive Design** for desktop 
 - **🔄 Direct Databricks Sync** for seamless deployment
 - **📊 Session Management** and error handling
 - **🎯 Citation Support** - Responses include source references
@@ -62,10 +62,10 @@ This implementation uses **official sports rulebooks**:
 3. **Create Agent Bricks Knowledge Assistant**
    - Go to **Agents** → **Knowledge Assistant** in Databricks
    - Name: "NFL-MLB Rules Assistant"
-   - Knowledge Source: `/Volumes/main/default/sports_rules/`
+   - Knowledge Source: `/Volumes/main/default/sports_rules/` or whereever you saved the NFL/MLB rules documents
    - Instructions: "Expert on NFL and MLB rules with accurate citations"
 
-### Option B: Adapt for Your Organization
+### Option B: Adapt for Your Organization (if you want to customize with your own internal company docs)
 
 1. **Replace Data Sources**
    ```sql
@@ -127,10 +127,11 @@ resources:
 
 ### 3. Deploy to Databricks
 ```bash
-# Sync to your workspace
+# Sync to your workspace (if using an IDE). If not, you can import all of the application files into your workspace
 databricks sync . /Workspace/Users/your.email@company.com/your-app-name
 
-# Deploy through Databricks Apps UI
+# Deploy through Databricks Apps UI - this is a manual step!! You need to do this in order for your Databricks app to actually deploy! Select the proper path where your application files live, deploy, and Databricks will stand up the application for you with a clickable link! 
+
 ```
 
 ## 🎨 Customization Examples
@@ -180,7 +181,7 @@ example_questions = [
 ]
 ```
 
-## 📁 Repository Structure
+## 📁 Repository Structure - all of these are required to run the application!!
 
 ```
 ├── app.py                    # Main Streamlit app (NFL/MLB themed)
@@ -271,8 +272,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Databricks** for the incredible Agent Bricks platform
 - **Streamlit** for the beautiful UI framework  
-- **NFL & MLB** for providing official rulebooks
 - **The Community** for inspiration and feedback
+- **Cursor** for the seamless development experience
 
 ---
 
